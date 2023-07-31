@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  margin: 0%;
+  padding: 0%;
+}
+.Login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  background: #fff;
+}
+.LoginMessage {
+  border-radius: 0px 0px 350px 0px;
+  background: linear-gradient(135deg, #009bce 0%, rgba(0, 138, 207, 0.17) 100%);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Traveller {
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+}
+
+.LoginCredentials {
+  height: 100vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.UserCredentials {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.KaniniLogo {
+  width: 140px;
+  height: 50px;
+}
+
+.SignInLabel {
+  color: var(--textcolortext-900, #0c1116);
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.SignInMessage {
+  color: var(--textcolortext-600, #4f5b67);
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.LoginInputLabel {
+  color: var(--textcolortext-600, #4f5b67);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.LoginInputField {
+  border-radius: 6px;
+  border: 1px solid var(--textcolortext-500, #717d8a);
+  opacity: 0.8;
+  background: var(--layoutcolorlayout-01, #fff);
+  height: 30px;
+}
+
+.SignInButton {
+  border: none;
+  cursor: pointer;
+  margin-top: 35px;
+  border-radius: 50px;
+  background: #0078ff;
+  height: 30px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.36px;
+}
+
+.LoginNote {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.LoginWelcomeMessage {
+  color: var(--textcolortext-900, #0c1116);
+  font-family: Inter;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.96px;
+}
+
+.SignInMessage {
+  color: var(--textcolortext-600, #161616);
+  font-family: Manrope;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 550;
+}
+
+@media only screen and (max-width: 850px) {
+  .Traveller {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 765px) {
+  .Login {
+    grid-template-columns: 1fr;
+  }
+  .LoginMessage {
+    display: none;
+  }
+}
