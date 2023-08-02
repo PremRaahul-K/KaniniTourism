@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAPI", "UserAPI\UserAPI.csproj", "{369E13DF-194E-4186-930D-AFF56A513513}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourismAPI", "TourisimAPI\TourismAPI.csproj", "{00F3315C-2934-4E18-8764-03F6550CAAF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourismAPI", "TourisimAPI\TourismAPI.csproj", "{00F3315C-2934-4E18-8764-03F6550CAAF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingAPI", "BookingAPI\BookingAPI.csproj", "{2989FA50-3672-48EB-9A43-7380DA8FD1B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{00F3315C-2934-4E18-8764-03F6550CAAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00F3315C-2934-4E18-8764-03F6550CAAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00F3315C-2934-4E18-8764-03F6550CAAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2989FA50-3672-48EB-9A43-7380DA8FD1B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2989FA50-3672-48EB-9A43-7380DA8FD1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2989FA50-3672-48EB-9A43-7380DA8FD1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2989FA50-3672-48EB-9A43-7380DA8FD1B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

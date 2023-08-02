@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 
 namespace TourismAPI.Models.Context
 {
@@ -8,5 +9,12 @@ namespace TourismAPI.Models.Context
         {
             
         }
+        public DbSet<Tour> Tours { get; set; }
+        public DbSet<Exclusion> Exclusions { get; set; }
+        public DbSet<Inclusion> Inclusions { get; set; }
+        //public DbSet<TourItinerary> TourItineraries { get; set; }
+        //public DbSet<Itinerary> Itineraries { get; set; }
+        public DbSet<TourInclusion> TourInclusions { get; set; }
+        public DbSet<TourExclusion> TourExclusions { get; set; }
     }
 }

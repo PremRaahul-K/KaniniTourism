@@ -67,7 +67,6 @@ namespace UserAPI.Controllers
             return BadRequest("Unable to update traveller details");
         }
         [HttpDelete]
-        [Authorize(Roles = "Admin")]
         [ProducesResponseType(typeof(ActionResult<TravellerDTO>), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TravellerDTO>> Delete(int id)
