@@ -45,12 +45,30 @@ namespace TourismAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TourType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Capacity = table.Column<int>(type: "int", nullable: false)
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tours", x => x.TourId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PickupDropLocations",
+                columns: table => new
+                {
+                    PickupDropLocationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PickupDropLocationName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TourId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PickupDropLocations", x => x.PickupDropLocationId);
+                    table.ForeignKey(
+                        name: "FK_PickupDropLocations_Tours_TourId",
+                        column: x => x.TourId,
+                        principalTable: "Tours",
+                        principalColumn: "TourId");
                 });
 
             migrationBuilder.CreateTable(
@@ -60,6 +78,7 @@ namespace TourismAPI.Migrations
                     DateId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TourId = table.Column<int>(type: "int", nullable: false),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
                     DepartureDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -126,6 +145,86 @@ namespace TourismAPI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TourItineraries",
+                columns: table => new
+                {
+                    TourItineraryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TourId = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TourItineraries", x => x.TourItineraryId);
+                    table.ForeignKey(
+                        name: "FK_TourItineraries_Tours_TourId",
+                        column: x => x.TourId,
+                        principalTable: "Tours",
+                        principalColumn: "TourId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Accomidations",
+                columns: table => new
+                {
+                    AccomidationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TourItineraryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accomidations", x => x.AccomidationId);
+                    table.ForeignKey(
+                        name: "FK_Accomidations_TourItineraries_TourItineraryId",
+                        column: x => x.TourItineraryId,
+                        principalTable: "TourItineraries",
+                        principalColumn: "TourItineraryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Itineraries",
+                columns: table => new
+                {
+                    ItineraryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ActivityTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EventTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TourItineraryId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Itineraries", x => x.ItineraryId);
+                    table.ForeignKey(
+                        name: "FK_Itineraries_TourItineraries_TourItineraryId",
+                        column: x => x.TourItineraryId,
+                        principalTable: "TourItineraries",
+                        principalColumn: "TourItineraryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Accomidations_TourItineraryId",
+                table: "Accomidations",
+                column: "TourItineraryId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Itineraries_TourItineraryId",
+                table: "Itineraries",
+                column: "TourItineraryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PickupDropLocations_TourId",
+                table: "PickupDropLocations",
+                column: "TourId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_TourDates_TourId",
                 table: "TourDates",
@@ -150,10 +249,24 @@ namespace TourismAPI.Migrations
                 name: "IX_TourInclusions_TourId",
                 table: "TourInclusions",
                 column: "TourId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TourItineraries_TourId",
+                table: "TourItineraries",
+                column: "TourId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Accomidations");
+
+            migrationBuilder.DropTable(
+                name: "Itineraries");
+
+            migrationBuilder.DropTable(
+                name: "PickupDropLocations");
+
             migrationBuilder.DropTable(
                 name: "TourDates");
 
@@ -162,6 +275,9 @@ namespace TourismAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "TourInclusions");
+
+            migrationBuilder.DropTable(
+                name: "TourItineraries");
 
             migrationBuilder.DropTable(
                 name: "Exclusions");

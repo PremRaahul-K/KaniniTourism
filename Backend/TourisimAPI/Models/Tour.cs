@@ -8,9 +8,10 @@
         public string? Description { get; set; }
         public string? TourType { get; set; }
         public string? Price { get; set; }
-        public int Capacity { get; set; }
-        public ICollection<TourDates>? TourDates { get; set; }
+        public ICollection<TourDate>? TourDates { get; set; }
         public ICollection<TourInclusion>? TourInclusions { get; set; }
         public ICollection<TourExclusion>? TourExclusions { get; set; }
+        public ICollection<TourItinerary>? TourItinerary  { get; set; }
+        public ICollection<PickupDropLocation>? PickupLocation { get; set; }
     }
 }
