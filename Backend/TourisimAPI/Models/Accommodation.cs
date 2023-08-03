@@ -4,10 +4,10 @@ using System.Text.Json.Serialization;
 
 namespace TourismAPI.Models
 {
-    public class Accomidation
+    public class Accommodation
     {
         [Key]
-        public int AccomidationId { get; set; }
+        public int AccommodationId { get; set; }
         public string? HotelName { get; set; }
         public string? Address  { get; set; }
         public int TourItineraryId { get; set; }

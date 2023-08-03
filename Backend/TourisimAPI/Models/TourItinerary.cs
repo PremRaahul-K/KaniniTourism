@@ -15,7 +15,7 @@ namespace TourismAPI.Models
         public Tour? Tour { get; set; }
         public string? Title { get; set; }
         public ICollection<Itinerary>? Itineraries { get; set; }
-        public Accomidation? Accomidation { get; set; }
+        public Accommodation? Accommodation { get; set; }
     }
 
 }

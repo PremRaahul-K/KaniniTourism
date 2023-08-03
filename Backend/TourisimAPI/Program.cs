@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using TourismAPI.Interfaces;
+using TourismAPI.Models;
 using TourismAPI.Models.Context;
+using TourismAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -60,6 +63,8 @@ builder.Services.AddCors(options =>
         });
 });
 builder.Services.AddDbContext<TourismContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+builder.Services.AddScoped<IRepo<int, Tour>, TourRepo>();
+builder.Services.AddScoped<ITourActions, TourService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -12,7 +12,7 @@ using TourismAPI.Models.Context;
 namespace TourismAPI.Migrations
 {
     [DbContext(typeof(TourismContext))]
-    [Migration("20230802102312_init")]
+    [Migration("20230802125147_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,13 +24,13 @@ namespace TourismAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("TourismAPI.Models.Accomidation", b =>
+            modelBuilder.Entity("TourismAPI.Models.Accommodation", b =>
                 {
-                    b.Property<int>("AccomidationId")
+                    b.Property<int>("AccommodationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccomidationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccommodationId"), 1L, 1);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -41,44 +41,12 @@ namespace TourismAPI.Migrations
                     b.Property<int>("TourItineraryId")
                         .HasColumnType("int");
 
-                    b.HasKey("AccomidationId");
+                    b.HasKey("AccommodationId");
 
                     b.HasIndex("TourItineraryId")
                         .IsUnique();
 
-                    b.ToTable("Accomidations");
-                });
-
-            modelBuilder.Entity("TourismAPI.Models.Exclusion", b =>
-                {
-                    b.Property<int>("ExclusionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ExclusionId"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ExclusionId");
-
-                    b.ToTable("Exclusions");
-                });
-
-            modelBuilder.Entity("TourismAPI.Models.Inclusion", b =>
-                {
-                    b.Property<int>("InclusionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InclusionId"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("InclusionId");
-
-                    b.ToTable("Inclusions");
+                    b.ToTable("Accommodations");
                 });
 
             modelBuilder.Entity("TourismAPI.Models.Itinerary", b =>
@@ -111,25 +79,28 @@ namespace TourismAPI.Migrations
                     b.ToTable("Itineraries");
                 });
 
-            modelBuilder.Entity("TourismAPI.Models.PickupDropLocation", b =>
+            modelBuilder.Entity("TourismAPI.Models.PickupLocation", b =>
                 {
-                    b.Property<int>("PickupDropLocationId")
+                    b.Property<int>("PickupLocationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PickupDropLocationId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PickupLocationId"), 1L, 1);
 
-                    b.Property<string>("PickupDropLocationName")
+                    b.Property<string>("PickupLocationName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("PickupTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("TourId")
                         .HasColumnType("int");
 
-                    b.HasKey("PickupDropLocationId");
+                    b.HasKey("PickupLocationId");
 
                     b.HasIndex("TourId");
 
-                    b.ToTable("PickupDropLocations");
+                    b.ToTable("PickupLocations");
                 });
 
             modelBuilder.Entity("TourismAPI.Models.Tour", b =>
@@ -141,6 +112,9 @@ namespace TourismAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourId"), 1L, 1);
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FoodAccommodation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -187,52 +161,6 @@ namespace TourismAPI.Migrations
                     b.ToTable("TourDates");
                 });
 
-            modelBuilder.Entity("TourismAPI.Models.TourExclusion", b =>
-                {
-                    b.Property<int>("TourExclusionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourExclusionId"), 1L, 1);
-
-                    b.Property<int>("ExclusionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TourId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TourExclusionId");
-
-                    b.HasIndex("ExclusionId");
-
-                    b.HasIndex("TourId");
-
-                    b.ToTable("TourExclusions");
-                });
-
-            modelBuilder.Entity("TourismAPI.Models.TourInclusion", b =>
-                {
-                    b.Property<int>("TourInclusionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TourInclusionId"), 1L, 1);
-
-                    b.Property<int>("InclusionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TourId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TourInclusionId");
-
-                    b.HasIndex("InclusionId");
-
-                    b.HasIndex("TourId");
-
-                    b.ToTable("TourInclusions");
-                });
-
             modelBuilder.Entity("TourismAPI.Models.TourItinerary", b =>
                 {
                     b.Property<int>("TourItineraryId")
@@ -254,11 +182,11 @@ namespace TourismAPI.Migrations
                     b.ToTable("TourItineraries");
                 });
 
-            modelBuilder.Entity("TourismAPI.Models.Accomidation", b =>
+            modelBuilder.Entity("TourismAPI.Models.Accommodation", b =>
                 {
                     b.HasOne("TourismAPI.Models.TourItinerary", "TourItinerary")
-                        .WithOne("Accomidation")
-                        .HasForeignKey("TourismAPI.Models.Accomidation", "TourItineraryId")
+                        .WithOne("Accommodation")
+                        .HasForeignKey("TourismAPI.Models.Accommodation", "TourItineraryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -276,7 +204,7 @@ namespace TourismAPI.Migrations
                     b.Navigation("TourItinerary");
                 });
 
-            modelBuilder.Entity("TourismAPI.Models.PickupDropLocation", b =>
+            modelBuilder.Entity("TourismAPI.Models.PickupLocation", b =>
                 {
                     b.HasOne("TourismAPI.Models.Tour", null)
                         .WithMany("PickupLocation")
@@ -290,44 +218,6 @@ namespace TourismAPI.Migrations
                         .HasForeignKey("TourId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Tour");
-                });
-
-            modelBuilder.Entity("TourismAPI.Models.TourExclusion", b =>
-                {
-                    b.HasOne("TourismAPI.Models.Exclusion", "Exclusion")
-                        .WithMany()
-                        .HasForeignKey("ExclusionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TourismAPI.Models.Tour", "Tour")
-                        .WithMany("TourExclusions")
-                        .HasForeignKey("TourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Exclusion");
-
-                    b.Navigation("Tour");
-                });
-
-            modelBuilder.Entity("TourismAPI.Models.TourInclusion", b =>
-                {
-                    b.HasOne("TourismAPI.Models.Inclusion", "Inclusion")
-                        .WithMany()
-                        .HasForeignKey("InclusionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TourismAPI.Models.Tour", "Tour")
-                        .WithMany("TourInclusions")
-                        .HasForeignKey("TourId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inclusion");
 
                     b.Navigation("Tour");
                 });
@@ -349,16 +239,12 @@ namespace TourismAPI.Migrations
 
                     b.Navigation("TourDates");
 
-                    b.Navigation("TourExclusions");
-
-                    b.Navigation("TourInclusions");
-
                     b.Navigation("TourItinerary");
                 });
 
             modelBuilder.Entity("TourismAPI.Models.TourItinerary", b =>
                 {
-                    b.Navigation("Accomidation");
+                    b.Navigation("Accommodation");
 
                     b.Navigation("Itineraries");
                 });
