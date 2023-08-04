@@ -2,8 +2,10 @@ import React from "react";
 import "../Sidebar/Sidebar.css";
 import { useState, Link } from "react";
 import TravellerLogo from "../images/PersonLogo.jpg";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
   const [sidebarClosed, setSidebarClosed] = useState(false);
 
   return (
@@ -40,8 +42,8 @@ function Sidebar() {
 
               <li className="nav-link">
                 <div className="navItem">
-                  <i className="bi bi-bell icon"></i>
-                  <span className="text nav-text">Notifications</span>
+                  <i class="bi bi-clock-history icon"></i>{" "}
+                  <span className="text nav-text">History</span>
                 </div>
               </li>
 
@@ -62,7 +64,13 @@ function Sidebar() {
           </div>
 
           <div className="bottom-content">
-            <div>
+            <div
+              className="logoutContainer"
+              onClick={() => {
+                localStorage.clear();
+                navigate("/");
+              }}
+            >
               <li className="navItem">
                 <i className="bi bi-box-arrow-left icon"></i>
                 <span className="text nav-text">Logout</span>

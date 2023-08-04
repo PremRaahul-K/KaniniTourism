@@ -30,5 +30,18 @@ namespace UserAPI.Controllers
             }
             return Ok(userResponseDTO);
         }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(UserResponseDTO), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<UserResponseDTO>> AdminRegister(UserDTO user)
+        {
+            var userResponseDTO = await _userService.AdminRegistration(user);
+            if (userResponseDTO == null)
+            {
+                return BadRequest("Unable to register");
+            }
+            return Created("Home", userResponseDTO);
+        }
     }
 }

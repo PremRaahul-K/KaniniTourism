@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import "../Login/Login.css";
+import "../TravelAgentRegister/TravelAgentRegister.css";
 import { useNavigate } from "react-router-dom";
 import Traveller from "../images/TravellerImage.png";
-
-function Login() {
+function TravelAgentRegister() {
   const navigate = useNavigate();
   var [user, setUser] = useState({
     email: "",
@@ -122,14 +121,7 @@ function Login() {
             </button>
             <div className="SignUpButtons">
               <button className="SignUpButton">Traveller SignUp</button>
-              <button
-                className="SignUpButton"
-                onClick={() => {
-                  navigate("/travelagentregister");
-                }}
-              >
-                Travelagent SignUp
-              </button>
+              <button className="SignUpButton">Travelagent SignUp</button>
             </div>
           </div>
         </div>
@@ -138,4 +130,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default TravelAgentRegister;

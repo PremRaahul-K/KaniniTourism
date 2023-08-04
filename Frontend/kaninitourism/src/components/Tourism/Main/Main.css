@@ -1,0 +1,19 @@
+.Main {
+  display: grid;
+  grid-template-columns: 1fr 14fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+}
+
+.MainSideBar {
+  grid-column: 1/2;
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+}
+
+.MainNavigateIcon {
+  /* background: #f6f8fc; */
+  background-color: red;
+  grid-column: 2/3;
+}

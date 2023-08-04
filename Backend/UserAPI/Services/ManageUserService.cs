@@ -51,5 +51,30 @@ namespace UserAPI.Services
             }
             return null;
         }
+
+        public async Task<UserResponseDTO?> AdminRegistration(UserDTO user)
+        {
+            UserResponseDTO? userResponseDTO = null;
+            var hmac = new HMACSHA512();
+            if (user.PasswordClear != null)
+            {
+                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(user.PasswordClear));
+                user.PasswordKey = hmac.Key;
+                user.Role = "Admin";
+                var addedUser = await _userRepo.Add(user);
+                if (addedUser != null)
+                {
+                    userResponseDTO = new UserResponseDTO
+                    {
+                        Id = addedUser.Id,
+                        Role = addedUser.Role,
+                        Email = addedUser.Email,
+                        Token = await _tokenService.GenerateToken(addedUser)
+                    };
+                    return userResponseDTO;
+                }
+            }
+            return null;
+        }
     }
 }
