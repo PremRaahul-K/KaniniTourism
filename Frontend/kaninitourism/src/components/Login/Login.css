@@ -34,7 +34,7 @@
   border-radius: 50px;
   height: 30px;
   color: #fff;
-  width: 40%;
+  width: 45%;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
@@ -68,6 +68,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
 .UserCredentials {
@@ -169,8 +170,5 @@
 @media only screen and (max-width: 765px) {
   .Login {
     grid-template-columns: 1fr;
-  }
-  .LoginMessage {
-    display: none;
   }
 }

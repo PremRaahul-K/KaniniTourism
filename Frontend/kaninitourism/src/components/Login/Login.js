@@ -9,8 +9,6 @@ function Login() {
     email: "",
     password: "",
   });
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -26,7 +24,7 @@ function Login() {
 
   const validatePassword = () => {
     if (user.password.length < 4) {
-      setPasswordError("Password must be at least 8 characters long");
+      setPasswordError("Password must be at least 5 characters long");
       return false;
     }
     setPasswordError("");
@@ -34,6 +32,7 @@ function Login() {
   };
 
   const handleSubmit = () => {
+    alert("jsdhfj");
     if (validateEmail() && validatePassword()) {
       fetch("http://localhost:5115/api/User/Login", {
         method: "POST",
@@ -93,11 +92,10 @@ function Login() {
             <input
               type="email"
               className="LoginInputField"
-              // value={email}
-              // onChange={(e) => setEmail(e.target.value)}
               onBlur={validateEmail}
               placeholder="Email"
               onChange={(event) => {
+                validateEmail();
                 setUser({ ...user, email: event.target.value });
               }}
             />
@@ -106,11 +104,10 @@ function Login() {
             <input
               type="password"
               className="LoginInputField"
-              // value={password}
-              // onChange={(e) => setPassword(e.target.value)}
               onBlur={validatePassword}
               placeholder="Password"
               onChange={(event) => {
+                validatePassword();
                 setUser({ ...user, password: event.target.value });
               }}
             />
@@ -121,14 +118,14 @@ function Login() {
               SIGN IN
             </button>
             <div className="SignUpButtons">
-              <button className="SignUpButton">Traveller SignUp</button>
+              <button className="SignUpButton">Traveller Sign Up</button>
               <button
                 className="SignUpButton"
                 onClick={() => {
                   navigate("/travelagentregister");
                 }}
               >
-                Travelagent SignUp
+                Travel Agent Sign Up
               </button>
             </div>
           </div>

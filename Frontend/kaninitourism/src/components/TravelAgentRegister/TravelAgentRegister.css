@@ -8,29 +8,34 @@
   margin: 0%;
   padding: 0%;
 }
-.Login {
+.TravelAgentRegister {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   background: #fff;
 }
 
+.genderInput {
+  width: 200px;
+}
+
 .ErrorText {
   color: red;
 }
 
-.SignUpButtons {
+.LoginBackMessage {
   display: flex;
+  text-align: center;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  margin-top: 5px;
 }
 
-.SignUpButton {
+.LoginButton {
   background-color: #b9dd4e;
   border: none;
   cursor: pointer;
-  margin-top: 15px;
   border-radius: 50px;
   height: 30px;
   color: #fff;
@@ -43,9 +48,28 @@
   letter-spacing: 0.36px;
 }
 
-.LoginMessage {
+.registerCredential {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+}
+
+.genderDobCredential {
+  display: flex;
+  justify-content: center;
+  align-items: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.RegisterMessage {
   border-radius: 0px 0px 350px 0px;
-  background: linear-gradient(135deg, #009bce 0%, rgba(0, 138, 207, 0.17) 100%);
+  background-color: #182b3a;
+  background-image: linear-gradient(135deg, #182b3a 0%, #20a4f3 74%);
   height: 100vh;
   width: 100%;
   display: flex;
@@ -60,7 +84,7 @@
   border-radius: 50%;
 }
 
-.LoginCredentials {
+.RegisterCredentials {
   height: 100vh;
   width: auto;
   display: flex;
@@ -73,7 +97,7 @@
 .UserCredentials {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
 }
 
 .MakeYourTripLogo {
@@ -100,7 +124,7 @@
   line-height: normal;
 }
 
-.LoginInputLabel {
+.RegisterInputLabel {
   color: var(--textcolortext-600, #4f5b67);
   font-family: Inter;
   font-size: 14px;
@@ -109,7 +133,7 @@
   line-height: normal;
 }
 
-.LoginInputField {
+.RegisterInputField {
   border-radius: 6px;
   border: 1px solid var(--textcolortext-500, #717d8a);
   opacity: 0.8;
@@ -167,10 +191,7 @@
 }
 
 @media only screen and (max-width: 765px) {
-  .Login {
+  .TravelAgentRegister {
     grid-template-columns: 1fr;
-  }
-  .LoginMessage {
-    display: none;
   }
 }

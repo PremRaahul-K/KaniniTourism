@@ -2,7 +2,7 @@ import React from "react";
 import "../Admin/Admin.css";
 
 function Admin() {
-  return <div>Add tour details</div>;
+  return <div>Admin</div>;
 }
 
 export default Admin;
