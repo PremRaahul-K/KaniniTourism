@@ -10,6 +10,7 @@ namespace TourismAPI.Models
         public int DateId { get; set; }
         public int TourId { get; set; }
         public int Capacity { get; set; }
+        public int BookedCapacity { get; set; }
         public int NumberOfDays
         {
             get

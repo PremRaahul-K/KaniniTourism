@@ -87,10 +87,9 @@ function TravelAgentRegister() {
       validateEmail() &&
       validateName() &&
       validateAgencyName() &&
-      validateDOB()
-      // validatePassword()
+      validateDOB() &&
+      validatePassword()
     ) {
-      alert("hello");
       fetch("http://localhost:5115/api/TravelAgent/TravelAgentRegister", {
         method: "POST",
         headers: {
@@ -105,7 +104,7 @@ function TravelAgentRegister() {
           localStorage.setItem("role", myData.role);
           localStorage.setItem("token", myData.token);
           if (myData.role == "TravelAgent") {
-            navigate("/addtourdetails");
+            navigate("/user");
           }
         })
         .catch((err) => {
@@ -118,7 +117,7 @@ function TravelAgentRegister() {
     <div className="TravelAgentRegister">
       <div className="RegisterMessage">
         <div>
-          <img src={TravelAgent} className="Traveller" />
+          <img src={TravelAgent} className="TravellerLogo" />
         </div>
         <div className="LoginNote">
           <span className="LoginWelcomeMessage">Hello!</span>

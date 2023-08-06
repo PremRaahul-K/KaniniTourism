@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../Navbar/Navbar.css";
 import { Link } from "react-router-dom";
 import TourismLogo from "../images/TravellerImage.png";
+import { AiOutlineMenu } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
 
 function Navbar() {
   const [toggleDropDown, setDropDown] = useState(false);
@@ -45,11 +47,11 @@ function Navbar() {
               setDropDown(!toggleDropDown);
             }}
           >
-            <i
-              class={
-                toggleDropDown ? "bi bi-x menuOption" : "bi bi-list menuOption"
-              }
-            ></i>
+            {toggleDropDown ? (
+              <MdCancel className="menuOption" />
+            ) : (
+              <AiOutlineMenu className="menuOption" />
+            )}
           </div>
         </div>
         <div

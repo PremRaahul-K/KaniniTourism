@@ -97,6 +97,9 @@ namespace TourismAPI.Services
                     updatingTour.PickupLocation = tour.PickupLocation;
                     updatingTour.TourDates = tour.TourDates;
                     updatingTour.TourItinerary = tour.TourItinerary;
+                    updatingTour.Highlight = tour.Highlight;
+                    updatingTour.Inclusion = tour.Inclusion;
+                    updatingTour.Exclusion = tour.Exclusion;    
                     return tour;
                 }
             }

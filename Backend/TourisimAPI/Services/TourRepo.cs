@@ -56,9 +56,9 @@ namespace TourismAPI.Services
         {
             try
             {
-                if (_context != null && _context.Tours != null && _context.TourItineraries != null && _context.Itineraries != null && _context.Accommodations != null)
+                if (_context != null && _context.Tours != null && _context.TourItineraries != null && _context.Itineraries != null && _context.Hotel != null)
                 {
-                    return await _context.Tours.Include(t => t.TourItinerary).ThenInclude(ti => ti.Itineraries).Include(t => t.TourItinerary).ThenInclude(ti => ti.Accommodation).Include(t => t.TourDates).Include(t => t.PickupLocation).FirstOrDefaultAsync(t => t.TourId == key);
+                    return await _context.Tours.Include(t => t.Highlight).Include(t => t.Inclusion).Include(t => t.Exclusion).Include(t => t.TourItinerary).ThenInclude(ti => ti.Itineraries).Include(t => t.TourItinerary).ThenInclude(ti => ti.Accommodation).Include(t => t.TourDates).Include(t => t.PickupLocation).FirstOrDefaultAsync(t => t.TourId == key);
                 }
             }
             catch (Exception ex)
@@ -72,7 +72,7 @@ namespace TourismAPI.Services
         {
             try
             {
-                return await _context.Tours.Include(t => t.TourItinerary).ThenInclude(ti => ti.Itineraries).Include(t => t.TourItinerary).ThenInclude(ti => ti.Accommodation).Include(t => t.TourDates).Include(t => t.PickupLocation).ToListAsync();
+                return await _context.Tours.Include(t => t.Highlight).Include(t => t.Inclusion).Include(t => t.Exclusion).Include(t => t.TourItinerary).ThenInclude(ti => ti.Itineraries).Include(t => t.TourItinerary).ThenInclude(ti => ti.Accommodation).Include(t => t.TourDates).Include(t => t.PickupLocation).ToListAsync();
 
             }
             catch (Exception ex)

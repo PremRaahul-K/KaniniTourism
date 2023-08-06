@@ -26,6 +26,10 @@
   flex-wrap: wrap;
 }
 
+.signUpMessage {
+  margin-top: 15px;
+}
+
 .SignUpButton {
   background-color: #b9dd4e;
   border: none;
@@ -54,7 +58,7 @@
   align-items: center;
 }
 
-.Traveller {
+.TravellerLogo {
   height: 400px;
   width: 400px;
   border-radius: 50%;

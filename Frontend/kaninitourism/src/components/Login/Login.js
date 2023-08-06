@@ -32,7 +32,6 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    alert("jsdhfj");
     if (validateEmail() && validatePassword()) {
       fetch("http://localhost:5115/api/User/Login", {
         method: "POST",
@@ -49,10 +48,10 @@ function Login() {
           localStorage.setItem("token", myData.token);
           if (myData.role == "Traveller") {
             if (myData.token != null) {
-              navigate("/main");
+              navigate("/user");
             }
           } else if (myData.role == "TravelAgent") {
-            navigate("/addtourdetails");
+            navigate("/user");
           } else if (myData.role == "Admin") {
             navigate("/admin");
           }
@@ -66,7 +65,7 @@ function Login() {
     <div className="Login">
       <div className="LoginMessage">
         <div>
-          <img src={Traveller} className="Traveller" />
+          <img src={Traveller} className="TravellerLogo" />
         </div>
         <div className="LoginNote">
           <span className="LoginWelcomeMessage">Welcome back!</span>
@@ -118,7 +117,15 @@ function Login() {
               SIGN IN
             </button>
             <div className="SignUpButtons">
-              <button className="SignUpButton">Traveller Sign Up</button>
+              <span className="signUpMessage">Don't have an account?</span>
+              <button
+                className="SignUpButton"
+                onClick={() => {
+                  navigate("/travellerregister ");
+                }}
+              >
+                Traveller Sign Up
+              </button>
               <button
                 className="SignUpButton"
                 onClick={() => {

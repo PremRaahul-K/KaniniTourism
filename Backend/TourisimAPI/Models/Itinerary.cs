@@ -9,9 +9,8 @@ namespace TourismAPI.Models
         [Key]
         public int ItineraryId { get; set; }
         public string? ActivityTitle { get; set; }
-        public string? Description { get; set; }
+        public string? ActivityDescription { get; set; }
         public string? Location { get; set; }
-        public DateTime? EventTime { get; set; }
         public int TourItineraryId { get; set; }
         [ForeignKey("TourItineraryId")]
         [JsonIgnore]

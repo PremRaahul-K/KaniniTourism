@@ -35,14 +35,14 @@ function Sidebar() {
             <ul className="menu-links">
               <li className="nav-link">
                 <div className="navItem">
-                  <i class="bi bi-house-door icon"></i>
+                  <i className="bi bi-house-door icon"></i>
                   <span className="text nav-text">Home</span>
                 </div>
               </li>
 
               <li className="nav-link">
                 <div className="navItem">
-                  <i class="bi bi-clock-history icon"></i>{" "}
+                  <i className="bi bi-clock-history icon"></i>{" "}
                   <span className="text nav-text">History</span>
                 </div>
               </li>
@@ -56,7 +56,7 @@ function Sidebar() {
 
               <li className="nav-link">
                 <div className="navItem">
-                  <i class="bi bi-wallet2 icon"></i>
+                  <i className="bi bi-wallet2 icon"></i>
                   <span className="text nav-text">Wallets</span>
                 </div>
               </li>

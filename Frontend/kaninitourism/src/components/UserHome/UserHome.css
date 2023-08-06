@@ -1,0 +1,34 @@
+.HomeCarousel {
+  height: 100vh;
+  background-color: #000;
+  background-image: url("../images/TravelBackGroundImage.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.hero {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.WelcomeMessage {
+  width: 70%;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.WelcomeQute {
+  font-size: 2rem;
+  font-weight: 700;
+}

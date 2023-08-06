@@ -1,0 +1,311 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  margin: 0%;
+  padding: 0%;
+}
+
+.TourPackage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
+.tourPackageHeader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tourPackageHeader h1 {
+  font-family: Inter;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #1f3347;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.tourDescription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.makeMyTripTravelQuote {
+  font-family: Inter;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #6a6a6a;
+}
+
+.tourPackageTitleDescription {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tourPackageImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  grid-column: 1/2;
+}
+
+.tourPackageTitleDescriptionData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-column: 2/3;
+}
+
+.tourPackageImage {
+  border-radius: 20px;
+  width: 450px;
+  height: 525px;
+}
+
+.tourPackageDayCount {
+  color: #08ac9e;
+  font-family: Inter;
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.tourPackageSectionHeader {
+  margin-top: 0px;
+  color: #1f3347;
+  font-size: 36px;
+  margin-bottom: 10px;
+  line-height: 1.375;
+  font-weight: 700;
+}
+
+.TourPackage P {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 33px;
+  color: #757575;
+  width: 500px;
+}
+
+.packageDetailsHighlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.packageDetailsHighlightsDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  grid-column: 1/2;
+}
+
+.packageDetailsHighlightsImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 2/3;
+}
+
+.packageDetailsHighlightsImage {
+  border-radius: 20px;
+  width: 450px;
+  height: 525px;
+}
+
+.packageDetailsTitle {
+  margin-top: 0px;
+  color: #1f3347;
+  font-size: 36px;
+}
+
+.HighlightsTitle {
+  margin-top: 0px;
+  color: #1f3347;
+  font-size: 24px;
+}
+
+.tourPackageHighlights li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px;
+}
+
+.tourPackageHighlights li span {
+  margin-right: 10px;
+}
+
+.basicInformation {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 90%;
+  margin-bottom: 25px;
+}
+
+.basicInformationHeading {
+  color: #1f3347;
+  font-size: 36px;
+}
+
+.basicInformationTable {
+  padding: 54px 90px 46px;
+  border-radius: 30px;
+  width: 100%;
+  background-color: #faf8fd;
+}
+.basicInformationTableRow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: dashed 1px black;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+.tourPackageInclusion {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+  margin-bottom: 20px;
+  width: 90%;
+}
+
+.tourPackageInclusionDetails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.includeTitleName {
+  color: #1f3347;
+  font-size: 30px;
+}
+
+.tourPackageInclusionImage {
+  border-radius: 20px;
+  width: 450px;
+  height: 350px;
+}
+
+.tourPlan {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.tourPlanDays {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.tourPlanItirnary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tourPlanHeading {
+  color: #1f3347;
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.tourDayTitle {
+  margin-bottom: 20px;
+  color: #595959;
+  font-weight: 600;
+}
+
+.dayTitle {
+  background-color: transparent;
+  color: #08ac9e;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+.dailyActivities li {
+  margin: 10px;
+  list-style: circle;
+}
+
+.tourItineraryImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1017px) {
+  .tourPackageTitleDescription {
+    grid-template-columns: 1fr;
+  }
+  .tourPackageImageContainer {
+    grid-column: 1/2;
+    margin-bottom: 20px;
+  }
+
+  .tourPackageTitleDescriptionData {
+    grid-column: 1/2;
+  }
+  .packageDetailsHighlights {
+    grid-template-columns: 1fr;
+  }
+
+  .packageDetailsHighlightsDetails {
+    grid-column: 1/2;
+  }
+
+  .packageDetailsHighlightsImageContainer {
+    grid-column: 1/2;
+  }
+
+  .tourPackageInclusion {
+    grid-template-columns: 1fr;
+  }
+
+  .tourPlan {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 741px) {
+  .basicInformation {
+    width: 100%;
+  }
+  .basicInformationTable {
+    width: 100%;
+  }
+}

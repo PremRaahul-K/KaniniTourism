@@ -14,8 +14,9 @@ namespace TourismAPI.Models
         [JsonIgnore]
         public Tour? Tour { get; set; }
         public string? Title { get; set; }
+        public string? ImageUrl { get; set; }
         public ICollection<Itinerary>? Itineraries { get; set; }
-        public Accommodation? Accommodation { get; set; }
+        public Hotel? Accommodation { get; set; }
     }
 
 }

@@ -7,6 +7,6 @@ namespace TourismAPI.Models
         [Key]
         public int PickupLocationId { get; set; }
         public string? PickupLocationName { get; set; }
-        public DateTime? PickupTime { get; set; }
+        public string? PickupTime { get; set; }
     }
 }
