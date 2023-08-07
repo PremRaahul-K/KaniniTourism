@@ -11,6 +11,7 @@ namespace BookingAPI.Interfaces
         public Task<List<Booking>?> GetAllBooking();
         public Task<Booking?> UpdateBooking(Booking booking);
         public Task<Booking?> UpdateBookingStatus(BookingDTO bookingDTO);
+        public Task<ICollection<Booking>?> GetBookingWithUserId(UserIdDTO userIdDTO);
 
     }
 }

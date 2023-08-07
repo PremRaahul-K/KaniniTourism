@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 30px;
+  padding: 50px;
 }
 
 .tourPackageHeader {
@@ -22,6 +22,104 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.tour-date-marker {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 150, 0, 0.5);
+  border-radius: 50%;
+  color: white;
+  font-size: 12px;
+}
+
+.tourPackageBooking {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.availableReturnDates {
+  color: white;
+  font-family: Inter;
+  display: flex;
+  font-weight: 250;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  padding: 15px 10px;
+  border-radius: 20px;
+  width: 200px;
+  background-color: #1f3347ed;
+  margin: 10px;
+}
+
+.tourtravellersCount {
+  font-family: Inter;
+  font-weight: bold;
+  color: #000;
+}
+
+.tourPackageReserve {
+  background-color: orange;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: #000;
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.travellersCountInput {
+  width: 50px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.depatureReturn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingReserveContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 400px;
+}
+
+.packageStartFromTourDetails {
+  color: #1f3347;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: Inter;
+}
+
+.packageStartFromPriceTourDetails {
+  color: #ff621f;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: Inter;
+}
+
+.tourPackagePriceDetails {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.availableReturnDates:hover {
+  background-color: #3a4f65ed;
 }
 
 .tourPackageHeader h1 {
@@ -44,6 +142,7 @@
   font-size: 18px;
   line-height: 1.2;
   color: #6a6a6a;
+  margin-bottom: 20px;
 }
 
 .tourPackageTitleDescription {
@@ -98,9 +197,9 @@
 .TourPackage P {
   display: block;
   margin-top: 25px;
-  margin-bottom: 33px;
+  margin-bottom: 10px;
   color: #757575;
-  width: 500px;
+  width: 100%;
 }
 
 .packageDetailsHighlights {
@@ -180,6 +279,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
   border-bottom: dashed 1px black;
   margin-bottom: 20px;
   padding-bottom: 5px;
@@ -192,6 +292,7 @@
   gap: 5px;
   margin-bottom: 20px;
   width: 90%;
+  height: 400px;
 }
 
 .tourPackageInclusionDetails {
@@ -216,16 +317,27 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 5px;
-  margin-bottom: 20px;
   width: 100%;
+}
+
+.tourPackageInclusionExclusion {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.inclusionExclusionShade {
+  background-color: transparent;
+  color: #cfcfcf;
+  font-size: 30px;
 }
 
 .tourPlanDays {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  width: 100%;
+  align-items: center;
 }
 
 .tourPlanItirnary {
@@ -257,6 +369,15 @@
   margin-bottom: 15px;
 }
 
+.stayAccomodation {
+  background-color: transparent;
+  color: #08ac9e;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
 .dailyActivities li {
   margin: 10px;
   list-style: circle;
@@ -266,6 +387,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+}
+
+.tourdayImage {
+  width: 300px;
+  height: 300px;
 }
 
 @media only screen and (max-width: 1017px) {
@@ -299,6 +426,10 @@
   .tourPlan {
     grid-template-columns: 1fr;
   }
+  .allTourItineraryDetails {
+    margin-top: 350px;
+    margin-left: 100px;
+  }
 }
 
 @media only screen and (max-width: 741px) {
@@ -307,5 +438,17 @@
   }
   .basicInformationTable {
     width: 100%;
+  }
+  .packageDetailsHighlightsImage {
+    width: 100%;
+    height: 100%;
+  }
+  .tourPackageImage {
+    width: 100%;
+    height: 100%;
+  }
+  .tourPackageInclusionImage {
+    width: 100%;
+    height: 100%;
   }
 }

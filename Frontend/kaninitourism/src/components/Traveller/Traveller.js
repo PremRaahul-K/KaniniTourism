@@ -6,6 +6,9 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import UserHome from "../UserHome/UserHome";
 import Package from "../Packages/Package";
+import TourPackage from "../TourPackage/TourPackage";
+import Booking from "../Booking/Booking";
+import BookingView from "../BookingView/BookingView";
 
 function Traveller() {
   const [toggleDropDown, setDropDown] = useState(false);
@@ -32,12 +35,17 @@ function Traveller() {
               </li>
               <li className="navButton">
                 <Link className="link" to="/login">
+                  Profile
+                </Link>
+              </li>
+              <li className="navButton">
+                <Link className="link" to="/traveller/userbooking">
                   View Bookings
                 </Link>
               </li>
             </ul>
             <Link to="" className="action_btn link">
-              Profile
+              Logout
             </Link>
             <div
               className="toggle_btn"
@@ -67,22 +75,32 @@ function Traveller() {
             </li>
             <li>
               <Link className="link" to="/login">
+                Profile
+              </Link>
+            </li>
+            <li>
+              <Link className="link" to="/traveller/userbooking">
                 View Bookings
               </Link>
             </li>
             <li>
               <Link to="/login" className="action_btn link">
-                Profile
+                Logout
               </Link>
             </li>
           </div>
         </header>
       </div>
-      <div className="TravellerContent">
-        <Routes>
-          <Route path="/" element={<UserHome />} />
-          <Route path="/tourpackages" element={<Package />} />
-        </Routes>
+      <div className="TravellerContentDetails">
+        <div>
+          <Routes>
+            <Route path="/" element={<UserHome />} />
+            <Route path="/tourpackages" element={<Package />} />
+            <Route path="/packagedetails/:id" element={<TourPackage />} />
+            <Route path="/booking" element={<Booking />} />
+            <Route path="/userbooking" element={<BookingView />} />
+          </Routes>
+        </div>
       </div>
     </div>
   );

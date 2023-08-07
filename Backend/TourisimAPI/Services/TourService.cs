@@ -1,5 +1,6 @@
 ﻿using TourismAPI.Interfaces;
 using TourismAPI.Models;
+using TourismAPI.Models.DTOs;
 
 namespace TourismAPI.Services
 {

@@ -11,5 +11,7 @@ namespace UserAPI.Interfaces
         public Task<TravelAgentDTO?> UpdateTravelAgent(TravelAgentUpdateDTO  travelAgentUpdateDTO);
         public Task<TravelAgentDTO?> UpdateTravelAgentStatus(TravelAgentUpdateStatusDTO travelAgentDTO);
         public Task<TravelAgentDTO?> DeleteTravelAgent(int travelAgentId);
+        public Task<TravelAgentDTO?> UpdateUserStatus(int travelAgentId);
+
     }
 }

@@ -65,6 +65,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<TourismContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
 builder.Services.AddScoped<IRepo<int, Tour>, TourRepo>();
 builder.Services.AddScoped<ITourActions, TourService>();
+builder.Services.AddScoped<IRepo<int,TourDate>, TourDateRepo>();
+builder.Services.AddScoped<ITourDateActions, TourDateService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -129,7 +129,6 @@ function Addtourdetails() {
         </div>
         <div className="tourItineraryActivies">
           <div>
-            {" "}
             <label className="addTourInputLable">Activity Title:</label>
             <input
               type="text"

@@ -18,7 +18,6 @@ namespace BookingAPI.Services
         {
             try
             {
-                booking.BookingStatus = "Pending";
                 await _bookingRepo.Add(booking);
                 return booking;
             }
@@ -81,6 +80,23 @@ namespace BookingAPI.Services
             return null;
         }
 
+        public async Task<ICollection<Booking>?> GetBookingWithUserId(UserIdDTO userIdDTO)
+        {
+            try
+            {
+                var bookings = await _bookingRepo.GetAll();
+                if (bookings != null)
+                {
+                    return bookings.Where(b=>b.UserId==userIdDTO.UserId).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+            return null;
+        }
+
         public async Task<Booking?> UpdateBooking(Booking booking)
         {
             try
@@ -93,6 +109,10 @@ namespace BookingAPI.Services
                     updatingBooking.BookingStatus = booking.BookingStatus;
                     updatingBooking.UserId = booking.UserId;
                     updatingBooking.TourId = booking.TourId;
+                    updatingBooking.PhoneNumber = booking.PhoneNumber;
+                    updatingBooking.ContactEmail = booking.ContactEmail;
+                    updatingBooking.ContactName = booking.ContactName;
+                    updatingBooking.TotalPrice = booking.TotalPrice;
                     await _bookingRepo.Update(updatingBooking);
                     return booking;
                 }

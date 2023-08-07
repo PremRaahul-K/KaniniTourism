@@ -1,7 +1,58 @@
 import React, { useState, useEffect } from "react";
 import "../TourPackage/TourPackage.css";
+import { useNavigate, useParams } from "react-router-dom";
 
 function TourPackage() {
+  const navigate = useNavigate();
+  const [showExclusion, setExclusion] = useState(false);
+  const [showInclusion, setInclusion] = useState(true);
+  const [selectedDates, setSelectedDates] = useState(null);
+  const [bookingApproval, setBookingApproval] = useState(false);
+  const [bookingError, setBookingError] = useState(false);
+  const [validateBooking, setValidateBooking] = useState({
+    travellerCount: 0,
+    dateId: 0,
+  });
+
+  const handleDateSelection = (departureDate, returnDate) => {
+    setSelectedDates({ departureDate, returnDate });
+  };
+
+  const handleReservation = () => {
+    if (selectedDates) {
+      fetch("http://localhost:5129/api/Tour/ValidateBooking", {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...validateBooking }),
+      })
+        .then(async (response) => {
+          const data = await response.json();
+          if (data.validationStatus == "approved") {
+            setBookingApproval(true);
+            setBookingError(false);
+          } else {
+            setBookingApproval(false);
+            setBookingError(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err.error);
+        });
+    }
+  };
+
+  const handleShowInclusion = () => {
+    setInclusion(true);
+    setExclusion(false);
+  };
+
+  const handleShowExclusion = () => {
+    setInclusion(false);
+    setExclusion(true);
+  };
   const [agentDetails, setAgentDetails] = useState({
     travelAgent: {
       travelAgentId: 0,
@@ -92,23 +143,8 @@ function TourPackage() {
       },
     ],
   });
-  const id = 2;
+  const { id } = useParams();
   useEffect(() => {
-    fetch("http://localhost:5129/api/Tour/GetTour?id=" + id, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (response) => {
-        const data = await response.json();
-        setTourPackage(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.error);
-      });
     fetch("http://localhost:5129/api/Tour/GetTour?id=" + id, {
       method: "POST",
       headers: {
@@ -154,10 +190,10 @@ function TourPackage() {
           <h1>{tourPackage.name} tour Package</h1>
         </div>
         <div className="tourDescription">
-          <p className="makeMyTripTravelQuote">
+          <span className="makeMyTripTravelQuote">
             Make your trip is one of the most popular Travel agency for those
             who want to explore the world and try to make adventure
-          </p>
+          </span>
         </div>
       </div>
       <div className="tourPackageTitleDescription">
@@ -179,11 +215,114 @@ function TourPackage() {
               Explore the Beauty of {tourPackage.name} and enjoy
             </h2>
             <p>{tourPackage.description}</p>
-            <p>
-              Travor is one of the most popular Travel agency for those explore
-              the wold and try to make adventure as we provide beautiful
-              destination around the world and make you trip
-            </p>
+          </div>
+          <div className="tourPackagePriceDetails">
+            <div>
+              <span className="packageStartFromTourDetails">Price </span>
+              <span className="packageStartFromPriceTourDetails">
+                ${tourPackage.price}
+              </span>
+            </div>
+          </div>
+          <div className="tourPackageBooking">
+            <div>
+              <h3 className="">Available Dates:</h3>
+              <ul className="depatureReturn">
+                {tourPackage.tourDates.map((date) => (
+                  <div key={date.dateId}>
+                    {date.capacity != date.bookedCapacity && (
+                      <li
+                        onClick={() => {
+                          handleDateSelection(
+                            date.departureDate,
+                            date.returnDate
+                          );
+                          setValidateBooking({
+                            ...validateBooking,
+                            dateId: date.dateId,
+                          });
+                          setBookingApproval(false);
+                          setBookingError(false);
+                        }}
+                        className="availableReturnDates"
+                      >
+                        <span>
+                          Departure -
+                          {new Date(date.departureDate).toLocaleDateString()}
+                        </span>
+                        <span>
+                          Return -
+                          {new Date(date.returnDate).toLocaleDateString()}
+                        </span>
+                      </li>
+                    )}
+                  </div>
+                ))}
+              </ul>
+
+              {selectedDates && (
+                <div>
+                  <h3>Selected Dates:</h3>
+                  <div>
+                    <p>
+                      Departure:
+                      {new Date(
+                        selectedDates.departureDate
+                      ).toLocaleDateString()}
+                      - Return:
+                      {new Date(selectedDates.returnDate).toLocaleDateString()}
+                    </p>
+                    {bookingError && (
+                      <span style={{ color: "red" }}>
+                        "Available time slots for the desired date and time are
+                        already booked choose a different date"
+                      </span>
+                    )}
+                  </div>
+                  <div className="bookingReserveContainer">
+                    <label className="tourtravellersCount">
+                      Travelers Count :
+                    </label>
+                    <input
+                      type="number"
+                      onChange={(e) => {
+                        setValidateBooking({
+                          ...validateBooking,
+                          travellerCount: e.target.value,
+                        });
+                        setBookingApproval(false);
+                        setBookingError(false);
+                      }}
+                      min="1"
+                      className="travellersCountInput"
+                    />
+                    {bookingApproval && validateBooking.travellerCount > 0 ? (
+                      <button
+                        onClick={() => {
+                          localStorage.setItem(
+                            "TravellerCount",
+                            validateBooking.travellerCount
+                          );
+                          localStorage.setItem("TourId", tourPackage.tourId);
+                          localStorage.setItem("TourPrice", tourPackage.price);
+                          navigate("/booking");
+                        }}
+                        className="tourPackageReserve"
+                      >
+                        Book Package
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleReservation}
+                        className="tourPackageReserve"
+                      >
+                        Reserve
+                      </button>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -263,8 +402,31 @@ function TourPackage() {
       <div className="tourPackageInclusion">
         <div className="tourPackageInclusionDetails">
           <div>
-            <div>
-              <h4 className="includeTitleName">Included</h4>
+            <div className="tourPackageInclusionExclusion">
+              <div>
+                <h4
+                  className={
+                    showInclusion
+                      ? "includeTitleName"
+                      : "includeTitleName inclusionExclusionShade"
+                  }
+                  onClick={handleShowInclusion}
+                >
+                  Included
+                </h4>
+              </div>
+              <div>
+                <h4
+                  className={
+                    showExclusion
+                      ? "includeTitleName"
+                      : "includeTitleName inclusionExclusionShade"
+                  }
+                  onClick={handleShowExclusion}
+                >
+                  Not Included
+                </h4>
+              </div>
             </div>
             <div>
               <div>
@@ -277,21 +439,40 @@ function TourPackage() {
                 </p>
               </div>
               <div>
-                <ul className="tourPackageHighlights">
-                  {tourPackage.inclusion.map((item, index) => (
-                    <li key={index}>
-                      <span>
-                        <img
-                          className="tickMark"
-                          src={
-                            "https://assets.website-files.com/63b261b98057c80332966627/63c77094b962f068a4378bb6_check-mark.svg"
-                          }
-                        />
-                      </span>
-                      <span>{item.inclusionDetails}</span>
-                    </li>
-                  ))}
-                </ul>
+                {showInclusion && (
+                  <ul className="tourPackageHighlights">
+                    {tourPackage.inclusion.map((item, index) => (
+                      <li key={index}>
+                        <span>
+                          <img
+                            className="tickMark"
+                            src={
+                              "https://assets.website-files.com/63b261b98057c80332966627/63c77094b962f068a4378bb6_check-mark.svg"
+                            }
+                          />
+                        </span>
+                        <span>{item.inclusionDetails}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {showExclusion && (
+                  <ul className="tourPackageHighlights exclusion">
+                    {tourPackage.exclusion.map((item, index) => (
+                      <li key={index}>
+                        <span>
+                          <img
+                            className="tickMark"
+                            src={
+                              "https://assets.website-files.com/63b261b98057c80332966627/63c77094b962f068a4378bb6_check-mark.svg"
+                            }
+                          />
+                        </span>
+                        <span>{item.exclusionDetails}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             </div>
           </div>
@@ -305,47 +486,48 @@ function TourPackage() {
           />
         </div>
       </div>
-      <div className="tourPlan">
-        <div className="tourPlanItirnary">
-          <div>
-            <div className="tourPlanDays">
-              <div>
-                <h4 className="tourPlanHeading">Tour Plan</h4>
-              </div>
-              {tourPackage.tourItinerary.map((item, index) => (
+      <div className="allTourItineraryDetails">
+        <div>
+          <h4 className="tourPlanHeading"> Itinerary Details </h4>
+        </div>
+        {tourPackage.tourItinerary.map((item, index) => (
+          <div className="tourPlan" key={index}>
+            <div className="tourPlanItirnary">
+              <div className="tourPlanDays">
                 <div>
                   <div>
-                    <h5 className="dayTitle">Day - 1</h5>
+                    <h5 className="dayTitle">Day - {index + 1}</h5>
                   </div>
-                  <h5 className="tourDayTitle">
-                    Visit: The Colosseum and the Arch of Constantine
-                  </h5>
-                  <ul className="dailyActivities">
-                    <li>
-                      As the Eiffel Tower is to Paris, the silhouette of the
-                    </li>
-                    <li>
-                      As the Eiffel Tower is to Paris, the silhouette of the
-                    </li>
-                    <li>
-                      As the Eiffel Tower is to Paris, the silhouette of the
-                    </li>
-                    <li>
-                      As the Eiffel Tower is to Paris, the silhouette of the
-                    </li>
-                  </ul>
+                  <h5 className="tourDayTitle">Title: {item.title}</h5>
+                  {item.itineraries.map((itinerary, index) => (
+                    <div key={index}>
+                      <ul className="dailyActivities">
+                        <span>{itinerary.activityTitle}</span>,
+                        <span>{itinerary.activityDescription}</span>,
+                        <span>{itinerary.location}</span>
+                      </ul>
+                    </div>
+                  ))}
+                  <div>
+                    <h5 className="stayAccomodation">
+                      Stay & Accommodation Details
+                    </h5>
+                    <span>{item.accommodation.hotelName}</span>,
+                    <span>{item.accommodation.address}</span>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
+            <div className="tourItineraryImage">
+              <img
+                src={
+                  "https://assets.website-files.com/63b261b98057c80332966627/63c8db41cd4253633986638b_tour-plan-image.png"
+                }
+                className="tourdayImage"
+              />
             </div>
           </div>
-        </div>
-        <div className="tourItineraryImage">
-          <img
-            src={
-              "https://assets.website-files.com/63b261b98057c80332966627/63c8db41cd4253633986638b_tour-plan-image.png"
-            }
-          />
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -34,7 +34,21 @@ namespace BookingAPI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("BookingStatus")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ContactEmail")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("TotalPrice")
+                        .IsRequired()
+                        .HasColumnType("float");
 
                     b.Property<int>("TourId")
                         .HasColumnType("int");
@@ -56,6 +70,7 @@ namespace BookingAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"), 1L, 1);
 
                     b.Property<string>("Age")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("BookingId")
@@ -65,6 +80,7 @@ namespace BookingAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PassengerId");

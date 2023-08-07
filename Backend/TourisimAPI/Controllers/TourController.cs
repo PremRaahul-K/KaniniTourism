@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using TourismAPI.Interfaces;
 using TourismAPI.Models;
+using TourismAPI.Models.DTOs;
+using TourismAPI.Services;
 
 namespace TourismAPI.Controllers
 {
@@ -10,10 +12,12 @@ namespace TourismAPI.Controllers
     public class TourController : ControllerBase
     {
         private readonly ITourActions _tourService;
+        private readonly ITourDateActions _tourDateService;
 
-        public TourController(ITourActions tourService)
+        public TourController(ITourActions tourService,ITourDateActions tourDateService)
         {
             _tourService = tourService;
+            _tourDateService = tourDateService;
         }
         [HttpPost]
         [ProducesResponseType(typeof(Tour), StatusCodes.Status201Created)]
@@ -38,6 +42,18 @@ namespace TourismAPI.Controllers
                 return NotFound("No tour are available at the moment");
             }
             return Ok(tour);
+        }
+        [HttpPost]
+        [ProducesResponseType(typeof(ActionResult<Tour>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<BookingDTO>> ValidateBooking(ValidateBookingDTO validateBookingDTO)
+        {
+            var bookingDTO = await _tourDateService.ValidateBooking(validateBookingDTO);
+            if (bookingDTO == null)
+            {
+                return NotFound("unable to validate booking status");
+            }
+            return Ok(bookingDTO);
         }
         [HttpGet]
         [ProducesResponseType(typeof(ActionResult<ICollection<Tour>>), StatusCodes.Status200OK)]

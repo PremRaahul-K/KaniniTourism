@@ -42,6 +42,18 @@ namespace BookingAPI.Controllers
             }
             return Ok(booking);
         }
+        [HttpPost]
+        [ProducesResponseType(typeof(ActionResult<ICollection<Booking>>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ICollection<Booking>>> GetBookingWithUserId(UserIdDTO userIdDTO)
+        {
+            var booking = await _bookingService.GetBookingWithUserId(userIdDTO);
+            if (booking == null)
+            {
+                return NotFound("No booking are available at the moment");
+            }
+            return Ok(booking);
+        }
         [HttpGet]
         [ProducesResponseType(typeof(ActionResult<ICollection<Booking>>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
