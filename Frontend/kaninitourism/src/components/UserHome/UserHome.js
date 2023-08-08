@@ -1,5 +1,6 @@
 import React from "react";
 import "../UserHome/UserHome.css";
+import Footer from "../Footer/Footer";
 
 function UserHome() {
   return (
@@ -17,6 +18,9 @@ function UserHome() {
             </p>
           </div>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

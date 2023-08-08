@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
 import Traveller from "../images/TravellerImage.png";
@@ -9,6 +9,9 @@ function Login() {
     email: "",
     password: "",
   });
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -46,12 +49,12 @@ function Login() {
           localStorage.setItem("id", myData.id);
           localStorage.setItem("role", myData.role);
           localStorage.setItem("token", myData.token);
-          if (myData.role == "Traveller") {
+          if (myData.role == "TravelAgent") {
             if (myData.token != null) {
-              navigate("/user");
+              navigate("/agent");
             }
-          } else if (myData.role == "TravelAgent") {
-            navigate("/user");
+          } else if (myData.role == "Traveller") {
+            navigate("/traveller");
           } else if (myData.role == "Admin") {
             navigate("/admin");
           }

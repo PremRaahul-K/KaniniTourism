@@ -28,11 +28,6 @@ namespace BookingAPI.Models
 
         [Required(ErrorMessage = "TotalPrice should be a numeric value with up to 2 decimal places.")]
         public double? TotalPrice { get; set; }
-
-
-        [Required(ErrorMessage = "TotalPrice should be a numeric value with up to 2 decimal places.")]
-        public string? PickUpLocation { get; set; }
-
         public ICollection<Passenger>? Passengers { get; set; }
     }
 }

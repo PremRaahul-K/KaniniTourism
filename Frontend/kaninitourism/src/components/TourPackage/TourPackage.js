@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../TourPackage/TourPackage.css";
 import { useNavigate, useParams } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 function TourPackage() {
   const navigate = useNavigate();
@@ -529,6 +530,9 @@ function TourPackage() {
             </div>
           </div>
         ))}
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

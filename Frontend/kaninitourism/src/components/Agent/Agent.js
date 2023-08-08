@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "../Agent/Agent.css";
 import Addtourdetails from "../AddTour/Addtourdetails";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import Footer from "../Footer/Footer";
 
 function Agent() {
+  const navigate = useNavigate();
   const [toggleDropDown, setDropDown] = useState(false);
   return (
     <div className="Agent">
@@ -42,9 +43,15 @@ function Agent() {
                   </Link>
                 </li>
               </ul>
-              <Link to="" className="action_btn link">
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/home");
+                }}
+                className="action_btn link"
+              >
                 Logout
-              </Link>
+              </button>
               <div
                 className="toggle_btn"
                 onClick={() => {
@@ -84,13 +91,19 @@ function Agent() {
                 </Link>
               </li>
               <li>
-                <Link to="/login" className="action_btn link">
+                <button
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/home");
+                  }}
+                  className="action_btn link"
+                >
                   Logout
-                </Link>
+                </button>
               </li>
             </div>
           </header>
-        </div>{" "}
+        </div>
       </div>
       <div className="AgentContent">
         <Routes>

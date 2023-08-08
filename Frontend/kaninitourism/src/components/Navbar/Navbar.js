@@ -18,28 +18,18 @@ function Navbar() {
           </div>
           <ul className="links">
             <li className="navButton">
-              <Link className="link" to="/login">
+              <Link className="link" to="/home">
                 Home
               </Link>
             </li>
             <li className="navButton">
-              <Link className="link" to="/login">
+              <Link className="link" to="/about">
                 About
-              </Link>
-            </li>
-            <li className="navButton">
-              <Link className="link" to="/login">
-                Services
-              </Link>
-            </li>
-            <li className="navButton">
-              <Link className="link" to="/login">
-                Contact
               </Link>
             </li>
           </ul>
           <Link to="/login" className="action_btn link">
-            GetStarted
+            Login
           </Link>
           <div
             className="toggle_btn"
@@ -58,28 +48,18 @@ function Navbar() {
           className={toggleDropDown ? "dropdown_menu open" : "dropdown_menu"}
         >
           <li className="">
-            <Link className="link" to="/login">
+            <Link className="link" to="/home">
               Home
             </Link>
           </li>
           <li>
-            <Link className="link" to="/login">
+            <Link className="link" to="/about">
               About
             </Link>
           </li>
           <li>
-            <Link className="link" to="/login">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link className="link" to="/login">
-              Contact
-            </Link>
-          </li>
-          <li>
             <Link to="/login" className="action_btn link">
-              GetStarted
+              Login
             </Link>
           </li>
         </div>

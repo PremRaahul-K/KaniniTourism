@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Traveller/Traveller.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
@@ -9,10 +9,10 @@ import Package from "../Packages/Package";
 import TourPackage from "../TourPackage/TourPackage";
 import Booking from "../Booking/Booking";
 import BookingView from "../BookingView/BookingView";
-import Footer from "../Footer/Footer";
 
 function Traveller() {
   const [toggleDropDown, setDropDown] = useState(false);
+  const navigate = useNavigate();
   return (
     <div className="Traveller">
       <div className="Navbar">
@@ -45,9 +45,15 @@ function Traveller() {
                 </Link>
               </li>
             </ul>
-            <Link to="" className="action_btn link">
+            <button
+              onClick={() => {
+                localStorage.clear();
+                navigate("/home");
+              }}
+              className="action_btn link"
+            >
               Logout
-            </Link>
+            </button>
             <div
               className="toggle_btn"
               onClick={() => {
@@ -85,9 +91,15 @@ function Traveller() {
               </Link>
             </li>
             <li>
-              <Link to="/login" className="action_btn link">
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/home");
+                }}
+                className="action_btn link"
+              >
                 Logout
-              </Link>
+              </button>
             </li>
           </div>
         </header>
@@ -101,9 +113,6 @@ function Traveller() {
             <Route path="/booking" element={<Booking />} />
             <Route path="/userbooking" element={<BookingView />} />
           </Routes>
-        </div>
-        <div>
-          <Footer />
         </div>
       </div>
     </div>

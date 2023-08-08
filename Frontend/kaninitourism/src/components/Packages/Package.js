@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../Packages/Package.css";
 import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 function Package() {
   const [searchCriteria, setSearchCriteria] = useState({
@@ -86,22 +87,31 @@ function Package() {
     },
   ]);
 
-  useEffect(() => {
-    fetch("http://localhost:5129/api/Tour/GetAllTours", {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then(async (response) => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5129/api/Tour/GetAllTours",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
         const data = await response.json();
         setTourPackage(data);
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } else {
+        console.error("Failed to fetch data.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const filterPackages = () => {
     const filtered = tourPackage.filter((item) => {
       const matchesDestination =
         item.name
@@ -125,6 +135,14 @@ function Package() {
     });
 
     setFilteredPackages(filtered);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    filterPackages();
   }, [searchCriteria, tourPackage]);
 
   return (
@@ -195,9 +213,7 @@ function Package() {
           <div className="packageCardLayOut" key={index}>
             <div>
               <img
-                src={
-                  "https://assets.website-files.com/63b51b3ba52a4df601298f55/63b658858457f7288f0f8b4a_package-8.jpg"
-                }
+                src={`http://127.0.0.1:10000/devstoreaccount1/tourpackages/tour/${item.imageUrl}`}
                 className="packageTourImage"
                 alt={`Tour ${item.tourId}`}
               />
@@ -227,7 +243,9 @@ function Package() {
           </div>
         ))}
       </div>
-      ;
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }

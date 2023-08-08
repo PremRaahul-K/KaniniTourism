@@ -59,6 +59,7 @@ function Booking() {
   const divArray = new Array(numberOfTravellers).fill(null);
 
   const BookTour = () => {
+    console.log(Booking);
     fetch("http://localhost:5011/api/Booking/AddBooking", {
       method: "POST",
       headers: {
@@ -69,6 +70,24 @@ function Booking() {
     })
       .then(async (response) => {
         const data = await response.json();
+      })
+      .catch((err) => {
+        console.log(err.error);
+      });
+  };
+
+  const UpdateBookingCapacity = (data) => {
+    fetch("http://localhost:5129/api/Tour/UpdateBookingCapacity", {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async (response) => {
+        const data = await response.json();
+        alert("success");
       })
       .catch((err) => {
         console.log(err.error);
@@ -184,6 +203,13 @@ function Booking() {
           className="payBookNowButton"
           onClick={() => {
             BookTour();
+            UpdateBookingCapacity({
+              travellerCount: parseInt(
+                localStorage.getItem("TravellerCount"),
+                10
+              ),
+              dateId: parseInt(localStorage.getItem("tourDateId"), 10),
+            });
           }}
         >
           Pay & BookNow

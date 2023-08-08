@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../Admin/Admin.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
@@ -8,6 +8,7 @@ import ViewAgents from "../ViewAgents/ViewAgents";
 import Footer from "../Footer/Footer";
 
 function Admin() {
+  const navigate = useNavigate();
   const [toggleDropDown, setDropDown] = useState(false);
   return (
     <div className="Admin">
@@ -26,25 +27,16 @@ function Admin() {
                     View All Agents
                   </Link>
                 </li>
-                {/* <li className="navButton">
-                  <Link className="link" to="/agent/createpackage">
-                    Create Package
-                  </Link>
-                </li>
-                <li className="navButton">
-                  <Link className="link" to="/login">
-                    Profile
-                  </Link>
-                </li>
-                <li className="navButton">
-                  <Link className="link" to="/login">
-                    View Bookings
-                  </Link>
-                </li> */}
               </ul>
-              <Link to="" className="action_btn link">
+              <button
+                className="action_btn link"
+                onClick={() => {
+                  localStorage.clear();
+                  navigate("/home");
+                }}
+              >
                 Logout
-              </Link>
+              </button>
               <div
                 className="toggle_btn"
                 onClick={() => {
@@ -68,25 +60,16 @@ function Admin() {
                   View All Agents
                 </Link>
               </li>
-              {/* <li>
-                <Link className="link" to="/login">
-                  Create Package
-                </Link>
-              </li>
-              <li className="link">
-                <Link className="link" to="/login">
-                  Profile
-                </Link>
-              </li>
               <li>
-                <Link className="link" to="/login">
-                  View Bookings
-                </Link>
-              </li> */}
-              <li>
-                <Link to="/login" className="action_btn link">
+                <button
+                  className="action_btn link"
+                  onClick={() => {
+                    localStorage.clear();
+                    navigate("/");
+                  }}
+                >
                   Logout
-                </Link>
+                </button>
               </li>
             </div>
           </header>

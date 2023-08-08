@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./Addtourdetails.css";
 import { useNavigate } from "react-router-dom";
+import { BlobServiceClient } from "@azure/storage-blob";
 
 function Addtourdetails() {
   const navigate = useNavigate();
+  var [images, setImages] = useState([]);
   const [daysCount, setDaysCount] = useState(1);
   const [tourPackage, setTourPackage] = useState({
     travelAgentId: localStorage.getItem("id"),
@@ -536,6 +538,26 @@ function Addtourdetails() {
   };
 
   const handleSubmit = () => {
+    const AZURITE_BLOB_SERVICE_URL = "http://localhost:10000";
+    const ACCOUNT_NAME = "devstoreaccount1";
+    const ACCOUNT_KEY =
+      "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==";
+    const blobServiceClient = new BlobServiceClient(
+      "http://127.0.0.1:10000/devstoreaccount1/tourpackages?sv=2018-03-28&st=2023-08-08T07%3A00%3A38Z&se=2023-08-09T07%3A00%3A38Z&sr=c&sp=racwdl&sig=Ae1UzgcJJ%2BqPDmSaEGTWXWw3fIpXRkROcRHK1bbyVdI%3D",
+      "sv=2018-03-28&st=2023-08-08T07%3A00%3A38Z&se=2023-08-09T07%3A00%3A38Z&sr=c&sp=racwdl&sig=Ae1UzgcJJ%2BqPDmSaEGTWXWw3fIpXRkROcRHK1bbyVdI%3D"
+    );
+    const containerClient = blobServiceClient.getContainerClient("tour");
+    console.log(images, "imgae");
+    for (let i = 0; i < images.length; i++) {
+      const blobClient = containerClient.getBlobClient(images[i].name);
+      const blockBlobClient = blobClient.getBlockBlobClient();
+      const result = blockBlobClient.uploadBrowserData(images[i], {
+        blockSize: 4 * 1024 * 1024,
+        concurrency: 20,
+        onProgress: (ev) => console.log(ev),
+      });
+      console.log(result, "result");
+    }
     console.log(tourPackage);
     fetch("http://localhost:5129/api/Tour/AddTour", {
       method: "POST",
@@ -626,6 +648,24 @@ function Addtourdetails() {
             onChange={(e) =>
               setTourPackage({ ...tourPackage, price: e.target.value })
             }
+          />
+        </div>
+        <div className="inputLabelFlexContainer">
+          <label className="addTourInputLable">Tour Gallery Pic</label>
+          <input
+            className="addTourInputField"
+            type="file"
+            variant="outlined"
+            multiple
+            onChange={(event) => {
+              const selectedImages = event.target.files;
+              setImages(selectedImages);
+              setTourPackage((prevDetails) => ({
+                ...prevDetails,
+                imageUrl: selectedImages[0].name,
+              }));
+            }}
+            required
           />
         </div>
         <div className="inputLabelFlexContainer ">

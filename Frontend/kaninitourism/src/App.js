@@ -6,18 +6,43 @@ import TravelAgentRegister from "./components/TravelAgentRegister/TravelAgentReg
 import TravellerRegister from "./components/TravellerRegister/TravellerRegister";
 import Traveller from "./components/Traveller/Traveller";
 import Agent from "./components/Agent/Agent";
-import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import AgentProtected from "./components/Protected/AgentProtected";
+import AdminProtected from "./components/Protected/AdminProtected";
+import TravellerProtected from "./components/Protected/TravellerProtected";
 
 function App() {
+  var token;
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/agent/*"
+            element={
+              <AgentProtected token={token}>
+                <Agent />
+              </AgentProtected>
+            }
+          />
+          <Route
+            path="/admin/*"
+            element={
+              <AdminProtected token={token}>
+                <Admin />
+              </AdminProtected>
+            }
+          />
+          <Route
+            path="/traveller/*"
+            element={
+              <TravellerProtected token={token}>
+                <Traveller />
+              </TravellerProtected>
+            }
+          />
           <Route path="/login" element={<Login />} />
-          <Route path="/agent/*" element={<Agent />} />
-          <Route path="/admin/*" element={<Admin />} />
-          <Route path="/traveller/*" element={<Traveller />} />
-          <Route path="/footer/" element={<Footer />} />
           <Route
             path="/travelagentregister"
             element={<TravelAgentRegister />}

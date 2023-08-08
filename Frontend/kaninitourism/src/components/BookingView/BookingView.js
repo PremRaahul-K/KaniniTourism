@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../BookingView/BookingView.css";
+import Footer from "../Footer/Footer";
 
 function BookingView() {
   const [userData, setUserData] = useState([]);
@@ -60,6 +61,9 @@ function BookingView() {
           ))}
         </tbody>
       </table>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
