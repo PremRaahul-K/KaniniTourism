@@ -113,6 +113,7 @@ namespace BookingAPI.Services
                     updatingBooking.ContactEmail = booking.ContactEmail;
                     updatingBooking.ContactName = booking.ContactName;
                     updatingBooking.TotalPrice = booking.TotalPrice;
+                    updatingBooking.PickUpLocation = booking.PickUpLocation;
                     await _bookingRepo.Update(updatingBooking);
                     return booking;
                 }

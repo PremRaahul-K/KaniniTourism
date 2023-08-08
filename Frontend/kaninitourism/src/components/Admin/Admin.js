@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import ViewAgents from "../ViewAgents/ViewAgents";
+import Footer from "../Footer/Footer";
 
 function Admin() {
   const [toggleDropDown, setDropDown] = useState(false);
@@ -95,6 +96,9 @@ function Admin() {
         <Routes>
           <Route path="/viewagents" element={<ViewAgents />} />
         </Routes>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

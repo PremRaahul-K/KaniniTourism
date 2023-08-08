@@ -64,6 +64,18 @@ namespace UserAPI.Controllers
             }
             return BadRequest("Unable to update travel agent details");
         }
+        [HttpPut]
+        [ProducesResponseType(typeof(ActionResult<TravelAgentDTO>), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<TravelAgentDTO>> UpdateTravelAgentStatus(TravelAgentUpdateStatusDTO travelAgentUpdateStatusDTO)
+        {
+            var travelAgent = await _travelAgentService.UpdateTravelAgentStatus(travelAgentUpdateStatusDTO);
+            if (travelAgent != null)
+            {
+                return Ok(travelAgent);
+            }
+            return BadRequest("Unable to update travel agent details");
+        }
         [HttpDelete]
         [ProducesResponseType(typeof(ActionResult<TravelAgentDTO>), StatusCodes.Status202Accepted)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

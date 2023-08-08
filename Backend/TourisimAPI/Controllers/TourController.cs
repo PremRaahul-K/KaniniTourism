@@ -79,6 +79,18 @@ namespace TourismAPI.Controllers
             }
             return BadRequest("Unable to update tour details");
         }
+        [HttpPut]
+        [ProducesResponseType(typeof(ActionResult<BookingDTO>), StatusCodes.Status202Accepted)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<BookingDTO>> UpdateBookingCapacity(ValidateBookingDTO validateBookingDTO)
+        {
+            var updatedTour = await _tourDateService.UpdateCapacity(validateBookingDTO);
+            if (updatedTour != null)
+            {
+                return Ok(updatedTour);
+            }
+            return BadRequest("Unable to update tour details");
+        }
 
         [HttpDelete]
         [ProducesResponseType(typeof(ActionResult<Tour>), StatusCodes.Status202Accepted)]

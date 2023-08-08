@@ -98,7 +98,7 @@ namespace UserAPI.Services
             return null;
         }
 
-        public async Task<TravelAgentDTO?> UpdateTravelAgentStatus(TravelAgentUpdateStatusDTO travelAgentDTO)
+        public async Task<TravelAgentDTO?> UpdateTravelAgentStatus(Models.DTOs.TravelAgentUpdateStatusDTO travelAgentDTO)
         {
             var user = await _user.Get(travelAgentDTO.UserId);
             if (user != null && user.UserDetail != null && user.UserDetail.TravelAgent != null)

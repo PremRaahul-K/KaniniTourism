@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
+import Footer from "../Footer/Footer";
 
 function Agent() {
   const [toggleDropDown, setDropDown] = useState(false);
@@ -95,6 +96,9 @@ function Agent() {
         <Routes>
           <Route path="createpackage" element={<Addtourdetails />} />
         </Routes>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import TravelAgentRegister from "./components/TravelAgentRegister/TravelAgentReg
 import TravellerRegister from "./components/TravellerRegister/TravellerRegister";
 import Traveller from "./components/Traveller/Traveller";
 import Agent from "./components/Agent/Agent";
-import ViewAgents from "./components/ViewAgents/ViewAgents";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           <Route path="/agent/*" element={<Agent />} />
           <Route path="/admin/*" element={<Admin />} />
           <Route path="/traveller/*" element={<Traveller />} />
+          <Route path="/footer/" element={<Footer />} />
           <Route
             path="/travelagentregister"
             element={<TravelAgentRegister />}

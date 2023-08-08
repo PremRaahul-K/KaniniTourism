@@ -9,6 +9,7 @@ import Package from "../Packages/Package";
 import TourPackage from "../TourPackage/TourPackage";
 import Booking from "../Booking/Booking";
 import BookingView from "../BookingView/BookingView";
+import Footer from "../Footer/Footer";
 
 function Traveller() {
   const [toggleDropDown, setDropDown] = useState(false);
@@ -100,6 +101,9 @@ function Traveller() {
             <Route path="/booking" element={<Booking />} />
             <Route path="/userbooking" element={<BookingView />} />
           </Routes>
+        </div>
+        <div>
+          <Footer />
         </div>
       </div>
     </div>

@@ -5,6 +5,9 @@ import "../ViewAgents/ViewAgents.css";
 function ViewAgents() {
   const [userData, setUserData] = useState([]);
   useEffect(() => {
+    GetAllTravelAgents();
+  });
+  const GetAllTravelAgents = () => {
     fetch("http://localhost:5115/api/TravelAgent/GetAllTravelAgents", {
       method: "GET",
       headers: {
@@ -24,7 +27,27 @@ function ViewAgents() {
       .catch((err) => {
         console.log("Fetch error:", err);
       });
-  }, []);
+  };
+
+  var ChangeStatus = (data) => {
+    var token = localStorage.getItem("token");
+    fetch("http://localhost:5115/api/TravelAgent/UpdateTravelAgentStatus", {
+      method: "PUT",
+      headers: {
+        accept: "text/plain",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async (data) => {
+        var myData = await data.json();
+        GetAllTravelAgents();
+        alert("success");
+      })
+      .catch((err) => {
+        console.log(err.error);
+      });
+  };
   return (
     <div>
       <table className="table">
@@ -46,13 +69,25 @@ function ViewAgents() {
               <td data-label="status">{item.travelAgent.status}</td>
               <td data-label="Update Status">
                 <button
+                  onClick={() => {
+                    var userStatus =
+                      item.travelAgent.status == "Approved"
+                        ? "Not Approved"
+                        : "Approved";
+                    ChangeStatus({
+                      userId: item.userId,
+                      status: userStatus,
+                    });
+                  }}
                   className={
-                    item.status == "Not Approved"
-                      ? "approveButton"
-                      : "notApproveButton"
+                    item.travelAgent.status == "Approved"
+                      ? "notApproveButton"
+                      : "approveButton"
                   }
                 >
-                  {item.status == "Approved" ? "Disapprove" : "Approve"}
+                  {item.travelAgent.status == "Approved"
+                    ? "Disapprove"
+                    : "Approve"}
                 </button>
               </td>
             </tr>

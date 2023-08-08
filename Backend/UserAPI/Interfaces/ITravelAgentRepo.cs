@@ -9,9 +9,7 @@ namespace UserAPI.Interfaces
         public Task<TravelAgentDTO?> GetTravelAgent(int travelAgentId);
         public Task<ICollection<TravelAgentDTO>?> GetTravelAgents();
         public Task<TravelAgentDTO?> UpdateTravelAgent(TravelAgentUpdateDTO  travelAgentUpdateDTO);
-        public Task<TravelAgentDTO?> UpdateTravelAgentStatus(TravelAgentUpdateStatusDTO travelAgentDTO);
+        public Task<TravelAgentDTO?> UpdateTravelAgentStatus(Models.DTOs.TravelAgentUpdateStatusDTO travelAgentDTO);
         public Task<TravelAgentDTO?> DeleteTravelAgent(int travelAgentId);
-        public Task<TravelAgentDTO?> UpdateUserStatus(int travelAgentId);
-
     }
 }

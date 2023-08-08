@@ -241,6 +241,7 @@ function TourPackage() {
                             ...validateBooking,
                             dateId: date.dateId,
                           });
+                          localStorage.setItem("tourDateId", date.dateId);
                           setBookingApproval(false);
                           setBookingError(false);
                         }}
@@ -305,7 +306,7 @@ function TourPackage() {
                           );
                           localStorage.setItem("TourId", tourPackage.tourId);
                           localStorage.setItem("TourPrice", tourPackage.price);
-                          navigate("/booking");
+                          navigate("/traveller/booking");
                         }}
                         className="tourPackageReserve"
                       >

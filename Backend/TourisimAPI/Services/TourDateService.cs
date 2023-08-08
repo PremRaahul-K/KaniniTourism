@@ -14,23 +14,54 @@ namespace TourismAPI.Services
             _tourRepo = dateRepo;
             _logger = logger;
         }
-        public async Task<BookingDTO?> ValidateBooking(ValidateBookingDTO validateBooking)
+
+        public async Task<BookingDTO?> UpdateCapacity(ValidateBookingDTO validateBooking)
         {
-            var tours = await _tourRepo.GetAll();
-            if (tours != null)
+            try
             {
-                var tour = tours.FirstOrDefault(t=>t.DateId==validateBooking.dateId);
+                var tour = await _tourRepo.Get(validateBooking.dateId);
                 if (tour != null)
                 {
                     var availableBookingSlots = tour.Capacity - tour.BookedCapacity;
-                    if (availableBookingSlots > 0 && availableBookingSlots>=validateBooking.travellerCount)
+                    if (availableBookingSlots > 0 && availableBookingSlots >= validateBooking.travellerCount)
                     {
-                        return new BookingDTO { validationStatus = "approved" };
+                        tour.BookedCapacity = tour.BookedCapacity + validateBooking.travellerCount;
+                        await _tourRepo.Update(tour);
+                        return new BookingDTO { validationStatus = "Booking capacity Updated" };
                     }
-                    return new BookingDTO { validationStatus = "not approved" };
                 }
             }
-            return null;   
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while updating booking capacity.");
+            }
+            return null;
+        }
+
+        public async Task<BookingDTO?> ValidateBooking(ValidateBookingDTO validateBooking)
+        {
+            try
+            {
+                var tours = await _tourRepo.GetAll();
+                if (tours != null)
+                {
+                    var tour = tours.FirstOrDefault(t => t.DateId == validateBooking.dateId);
+                    if (tour != null)
+                    {
+                        var availableBookingSlots = tour.Capacity - tour.BookedCapacity;
+                        if (availableBookingSlots > 0 && availableBookingSlots >= validateBooking.travellerCount)
+                        {
+                            return new BookingDTO { validationStatus = "approved" };
+                        }
+                        return new BookingDTO { validationStatus = "not approved" };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while validating booking.");
+            }
+            return null;
         }
     }
 }
